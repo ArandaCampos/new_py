@@ -100,11 +100,11 @@ fi
 if [ $DJANGO -eq 1 ] ; then
     django-admin startproject $NAME
     echo "django" >> requirements.txt
-    pip install -r requirements.txt
+else
+    mkdir $NAME
 fi
 
-# Make Project Dir
-mkdir $NAME
+# dir
 cd $NAME
 mkdir $NAME
 
@@ -128,8 +128,11 @@ fi
 # PyTest
 if [ $PYTEST -eq 1 ] ; then
     echo "pytest" >> requirements.txt
-    pip install -r requirements.txt
     mkdir test && cd test
     touch __init__.py
     touch test_$NAME.py
 fi
+
+pip install -r requirements.txt
+
+echo "Projeto $NAME criado com sucesso"
