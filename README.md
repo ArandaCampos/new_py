@@ -14,11 +14,11 @@
   
     # Clone o repositório
     >> mkdir newpy
-    >> git clone https://github.com/ArandaCampos/new_py.git newpy
+    >> git clone https://github.com/ArandaCampos/new_py.git newpy/
 
     # Renomear, torná-lo executável, e movê-lo para pasta bin do sistema (Ubuntu)
-    >> cd newpy
-    >> mv new_py.sh newpy && chmod +x newpy && cp newpy /usr/bin/
+    >> cd newpy/
+    >> cp new_py.sh newpy && chmod +x newpy && sudo mv newpy /usr/bin/
     
     # Rode o código
     >> newpy --version
