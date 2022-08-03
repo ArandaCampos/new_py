@@ -170,10 +170,11 @@ if [ $? -eq 0 ] ; then
 fi
 
 # Git
-echo "
+echo "## .gitignore default
 bin
 lib
-__pycache__" >> .gitignore
+__pycache__
+pyvenv.cfg" > .gitignore
 git init
 git add .
 git commit -m "setting"
