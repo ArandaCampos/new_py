@@ -8,6 +8,9 @@
 #       -x, --docs      Cria a pasta Docs
 #       -d, --django    Inicia um projeto Django
 #       -n, --name      Define um Nome para o projeto
+#       -V, --verbose   Imprime alertas
+#       -h, --help      Ajuda
+#       -v, --version   Versão atual
 #
 # Este script seta as primeiras estruturas de um projeto Python
 
@@ -32,6 +35,7 @@ README=0
 PYTEST=0
 DJANGO=0
 NAME=0
+VERBOSE=0
 NEXT=0
 
 # Caso não haja opções
@@ -76,6 +80,10 @@ do
         "--x" | "--docs" )
             DOCS=1
             ;;
+        # --Verbose
+        "--V" | "--verbose" )
+            VERBOSE=1
+            ;;
         *)
             # exit 1
             ;;
@@ -100,6 +108,12 @@ fi
 if [ $DJANGO -eq 1 ] ; then
     django-admin startproject $NAME
     echo "django" >> $NAME/requirements.txt
+    # Se foi criado
+    if [ $? -eq 0 ] ; then
+        if [ $VERBOSE -eq 1 ] ; then
+            echo "  -> Projeto Django criado com sucesso"
+        fi
+    fi
 else
     mkdir $NAME
 fi
@@ -111,15 +125,30 @@ mkdir $NAME
 # Created Virtual Machine Python
 virtualenv .
 source bin/activate
+# Se foi criado
+if [ $? -eq 0 ] ; then
+    if [ $VERBOSE -eq 1 ] ; then
+        echo "  -> Ambiente Virtual criado com sucesso"
+    fi
+fi
 
 # Readme.md
 if [ $README -eq 1 ] ; then
     echo "## $NAMEPROJECT" >> README.md
+    if [ $VERBOSE -eq 1 ] ; then
+        echo "  -> README.md criado com sucesso"
+    fi
 fi
 
 # DOCS
 if [ $DOCS -eq 1 ] ; then
     mkdir docs
+    # Se foi criado
+    if [ $? -eq 0 ] ; then
+        if [ $VERBOSE -eq 1 ] ; then
+            echo "  -> Diretório DOCS criado com sucesso"
+        fi
+    fi
 fi
 
 # PyTest
@@ -128,6 +157,10 @@ if [ $PYTEST -eq 1 ] ; then
     mkdir test
     touch test/__init__.py
     touch test/test_$NAME.py
+    # Se foi criado
+    if [ $VERBOSE -eq 1 ] ; then
+        echo "  -> Test criado com sucesso"
+    fi
 fi
 
 # Condicional para verificar se requirements.txt existe
@@ -136,12 +169,18 @@ if [ $? -eq 0 ] ; then
     pip install -r requirements.txt
 fi
 
-echo "Projeto $NAME criado com sucesso"
-
 # Git
-echo "bin
+echo "
+bin
 lib
 __pycache__" >> .gitignore
 git init
 git add .
 git commit -m "setting"
+
+if [ $VERBOSE -eq 1 ] ; then
+    echo "  -> Git iniciado com sucesso"
+fi
+
+
+echo "  -> Projeto $NAME criado com sucesso!"
