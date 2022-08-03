@@ -48,12 +48,12 @@ do
         # --Help
         "--help" | "-h" )
             echo -e "$HEADER\n$ARG_TXT"
-            exit 1
+            exit 0
             ;;
         # --Version
         "--version" | "-v" )
             echo -e $VERSION
-            exit 1
+            exit 0
             ;;
         # --Readme
         "--readme" | "-r" )
@@ -130,7 +130,11 @@ if [ $PYTEST -eq 1 ] ; then
     touch test/test_$NAME.py
 fi
 
-pip install -r requirements.txt
+# Condicional para verificar se requirements.txt existe
+[ -s requirements.txt ]
+if [ $? -eq 0 ] ; then
+    pip install -r requirements.txt
+fi
 
 echo "Projeto $NAME criado com sucesso"
 
