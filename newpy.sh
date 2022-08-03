@@ -115,6 +115,10 @@ if [ $DJANGO -eq 1 ] ; then
     fi
     echo "django" >> $NAME/requirements.txt
 else
+    if [ -d $NAME ] ; then
+        echo "Diretório $NAME já existe!"
+        exit 0
+    fi
     mkdir $NAME
 fi
 
