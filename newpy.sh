@@ -4,7 +4,7 @@
 #
 # Versão 1.0
 #       -r, --readme    Cria um arquivo README.md
-#       -t, --pytest    Instala o pytest, cria o __init__ e o arquivo test__.pytest
+#       -t, --pytest    Instala o pytest, cria o __init__ e o arquivo test__.py
 #       -x, --docs      Cria a pasta Docs
 #       -d, --django    Inicia um projeto Django
 #       -n, --name      Define um Nome para o projeto
@@ -19,7 +19,7 @@ HEADER="USO: $VERSION
 ARG_TXT="
  OPÇÔES SEM ARGUMENTO
 \t -r, --readme \t\tCria um arquivo README.md
-\t -t, --pytest \t\tInstala o pytest, cria o __init__ e o arquivo test__.pytest
+\t -t, --pytest \t\tInstala o pytest, cria o __init__ e o arquivo test__.py
 \t -x, --docs   \t\tCria a pasta Docs
 \t -d, --django \t\tInicia um projeto Django
 
