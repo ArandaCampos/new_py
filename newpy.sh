@@ -99,21 +99,18 @@ fi
 
 if [ $DJANGO -eq 1 ] ; then
     django-admin startproject $NAME
-    echo "django" >> requirements.txt
+    echo "django" >> $NAME/requirements.txt
 else
     mkdir $NAME
 fi
 
-# dir
+# root diretory
 cd $NAME
 mkdir $NAME
 
 # Created Virtual Machine Python
 virtualenv .
 source bin/activate
-
-# Init git
-git init
 
 # Readme.md
 if [ $README -eq 1 ] ; then
@@ -128,11 +125,19 @@ fi
 # PyTest
 if [ $PYTEST -eq 1 ] ; then
     echo "pytest" >> requirements.txt
-    mkdir test && cd test
-    touch __init__.py
-    touch test_$NAME.py
+    mkdir test
+    touch test/__init__.py
+    touch test/test_$NAME.py
 fi
 
 pip install -r requirements.txt
 
 echo "Projeto $NAME criado com sucesso"
+
+# Git
+echo "bin
+lib
+__pycache__" >> .gitignore
+git init
+git add .
+git commit -m "setting"
