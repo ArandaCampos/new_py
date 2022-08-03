@@ -107,13 +107,13 @@ fi
 
 if [ $DJANGO -eq 1 ] ; then
     django-admin startproject $NAME
-    echo "django" >> $NAME/requirements.txt
     # Se foi criado
     if [ $? -eq 0 ] ; then
         if [ $VERBOSE -eq 1 ] ; then
             echo "  -> Projeto Django criado com sucesso"
         fi
     fi
+    echo "django" >> $NAME/requirements.txt
 else
     mkdir $NAME
 fi
@@ -134,7 +134,7 @@ fi
 
 # Readme.md
 if [ $README -eq 1 ] ; then
-    echo "## $NAMEPROJECT" >> README.md
+    echo "## $NAME" >> README.md
     if [ $VERBOSE -eq 1 ] ; then
         echo "  -> README.md criado com sucesso"
     fi
